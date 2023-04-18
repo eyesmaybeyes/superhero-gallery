@@ -18,6 +18,42 @@
     font-weight: 600;
 }
 
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    font-size: 25px;
+}
+
+input {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+    position: relative;
+    color: #ffd700;
+}
+
+label:before {
+    content: "★";
+    position: absolute;
+    opacity: 0;
+}
+
+label:hover:before {
+    opacity: 1;
+}
+
+label:hover ~ label:before {
+    opacity: 1;
+}
+
+input:checked + label:before,
+input:checked ~ label:before {
+    opacity: 1;
+}
+
 @media (min-width: 1250px) {
     .hero {
         width: 40%;

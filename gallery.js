@@ -1,4 +1,4 @@
-let json = [{
+let json = `[{
     "name": "Бетмен",
     "universe": "DC Comics",
     "alterego": "Брюс Уэйн",
@@ -88,5 +88,23 @@ let json = [{
     "superpowers": "высокий болевой порог, регенерация и бессмертие, сверхчеловеческая иммунная система",
     "url": "https://n1s1.hsmedia.ru/34/93/39/3493392c94fc2ae0552ef9c7e87f2617/728x382_1_cc2a743fd686b7b2e256c062966bb465@1034x543_0xac120002_2692921231540468872.jpg",
     "info": "Как и Росомаха из Людей Икс, Дэдпул был подвергнут опытам по программе «Оружие Икс». Ученые попытались исцелить его рак, привив его клеткам способность к регенерации. Как и всегда в комиксах, что-то пошло не так, и Дэдпул остался изуродованным и психически нестабильным. Это единственный супергерой из списка, который однозначно не на стороне добра. Дэдпул наслаждается насилием. Первоначально появившись в основной Вселенной Marvel, он получил альтернативные варианты в других реальностях Мультивселенной. Что оставалось неизменным — его циничное, чёрное чувство юмора: за него Дэдпула прозвали «Болтливым наёмником»."
-}]
-console.log(json);
+}]`;
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    let gallery = JSON.parse(json);
+
+    let galleryContent = "";
+    for (let item of gallery) {
+        galleryContent += `<div class="hero">
+        <h2 class="name">${item.name}</h2>
+        <p class="alterego"><span class="para-style">Альтер эго: </span>${item.alterego}</p>
+        <p class="occupation"><span class="para-style">Род деятельности: </span>${item.occupation}</p>
+        <p class="friends"><span class="para-style">Друзья: </span>${item.friends}</p>
+        <p class="superpowers"><span class="para-style">Суперсилы: </span>${item.superpowers}</p>
+        <img src="${item.url}"></img>
+        <p class="info">${item.info}</p>
+    </div>`
+    }
+
+    document.getElementById("container").innerHTML = galleryContent;
+})

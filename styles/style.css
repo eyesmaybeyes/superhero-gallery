@@ -1,4 +1,4 @@
-#container {
+#container-gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -18,40 +18,24 @@
     font-weight: 600;
 }
 
-.rating {
+.ratings {
     display: flex;
     flex-direction: row-reverse;
     justify-content: start;
-    font-size: 25px;
 }
 
-input {
-    display: none;
-}
-
-label {
+.ratings span {
     cursor: pointer;
-    position: relative;
-    color: #ffd700;
+    transition: color 0.2s;
+    color: rgb(174, 170, 170);
+    font-size: 50px;
 }
 
-label:before {
-    content: "★";
-    position: absolute;
-    opacity: 0;
-}
-
-label:hover:before {
-    opacity: 1;
-}
-
-label:hover ~ label:before {
-    opacity: 1;
-}
-
-input:checked + label:before,
-input:checked ~ label:before {
-    opacity: 1;
+.ratings span:hover,
+.ratings span:hover ~ span,
+.ratings span[data-clicked],
+.ratings span[data-clicked] ~ span {
+    color: orange;
 }
 
 @media (min-width: 1250px) {

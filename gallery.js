@@ -124,15 +124,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         <div data-heroid="${item.id}" class="ratings">
 
-		<span data-rating="5">&#9733;</span>
+		<span id="1-${item.naming}" data-rating="1">&#9733;</span>
 
-		<span data-rating="4">&#9733;</span>
+		<span id="2-${item.naming}" data-rating="2">&#9733;</span>
 
-		<span data-rating="3">&#9733;</span>
+		<span id="3-${item.naming}" data-rating="3">&#9733;</span>
 
-		<span data-rating="2">&#9733;</span>
+		<span id="4-${item.naming}" data-rating="4">&#9733;</span>
 
-		<span data-rating="1">&#9733;</span>
+		<span id="5-${item.naming}" data-rating="5">&#9733;</span>
         
 		</div>
         
@@ -155,21 +155,61 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     let stars = document.querySelectorAll(".ratings span");
 
+    stars.forEach((star, index1) => {
+        star.addEventListener("click", () => {
+            console.log(index1);
+
+            let currentStar = document.getElementById(`${star.id}`);
+
+            let currentColor = window.getComputedStyle(currentStar).color;
+
+            function rgbToInteger(rgb) {
+                let values = rgb.match(/\d+/g).map(Number);
+                return {
+                    r: values[0],
+                    g: values[1],
+                    b: values[2],
+                };
+            }
+
+            // получить объект цвета из RGB
+            let currentColorRGB = rgbToInteger(currentColor);
+            console.log(currentColorRGB);
+
+            let lastIdStar = star.id.match(/\d+/)[0];
+
+            let wordId = star.id.match(/[a-zA-Z]+/)[0];
+
+            if (
+                currentColorRGB.r === 174 &&
+                currentColorRGB.g === 170 &&
+                currentColorRGB.b === 170
+            ) {
+                for (let index = 1; index <= lastIdStar; index++) {
+                    let starDictionary = document.getElementById(
+                        `${index}-${wordId}`
+                    );
+
+                    starDictionary.style.color = "#FA7720";
+                }
+            } else {
+
+                for (let index = 5; index > lastIdStar; index--) {
+                    let starDictionary = document.getElementById(
+                        `${index}-${wordId}`
+                    );
+
+                    starDictionary.style.color = "#AEAAAA";
+                }
+            }
+        });
+    });
+
     let ratings = [];
 
     for (let star of stars) {
 
         star.addEventListener("click", function () {
-
-            let children = star.parentElement.children;
-
-            for (let child of children) {
-
-                if (child.getAttribute("data-clicked")) {
-
-                    return false;
-                }
-            }
 
             this.setAttribute("data-clicked", "true");
 

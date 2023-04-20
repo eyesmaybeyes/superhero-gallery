@@ -20,22 +20,14 @@
 
 .ratings {
     display: flex;
-    flex-direction: row-reverse;
     justify-content: start;
 }
 
 .ratings span {
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.2 ease;
     color: rgb(174, 170, 170);
     font-size: 50px;
-}
-
-.ratings span:hover,
-.ratings span:hover ~ span,
-.ratings span[data-clicked],
-.ratings span[data-clicked] ~ span {
-    color: orange;
 }
 
 @media (min-width: 1250px) {

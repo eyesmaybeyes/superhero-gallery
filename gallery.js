@@ -110,7 +110,7 @@ let json = `[{
     "info": "Как и Росомаха из Людей Икс, Дэдпул был подвергнут опытам по программе «Оружие Икс». Ученые попытались исцелить его рак, привив его клеткам способность к регенерации. Как и всегда в комиксах, что-то пошло не так, и Дэдпул остался изуродованным и психически нестабильным. Это единственный супергерой из списка, который однозначно не на стороне добра. Дэдпул наслаждается насилием. Первоначально появившись в основной Вселенной Marvel, он получил альтернативные варианты в других реальностях Мультивселенной. Что оставалось неизменным — его циничное, чёрное чувство юмора: за него Дэдпула прозвали «Болтливым наёмником»."
 }]`;
 
-let gallery = JSON.parse(json);
+const gallery = JSON.parse(json);
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -153,18 +153,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("container-gallery").innerHTML = galleryContent;
 
-    let stars = document.querySelectorAll(".ratings span");
+    const stars = document.querySelectorAll(".ratings span");
 
     stars.forEach((star, index1) => {
         star.addEventListener("click", () => {
-            console.log(index1);
 
-            let currentStar = document.getElementById(`${star.id}`);
+            const currentStar = document.getElementById(`${star.id}`);
 
-            let currentColor = window.getComputedStyle(currentStar).color;
+            const currentColor = window.getComputedStyle(currentStar).color;
 
             function rgbToInteger(rgb) {
-                let values = rgb.match(/\d+/g).map(Number);
+                const values = rgb.match(/\d+/g).map(Number);
                 return {
                     r: values[0],
                     g: values[1],
@@ -172,13 +171,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 };
             }
 
-            // получить объект цвета из RGB
-            let currentColorRGB = rgbToInteger(currentColor);
-            console.log(currentColorRGB);
+            const currentColorRGB = rgbToInteger(currentColor);
 
-            let lastIdStar = star.id.match(/\d+/)[0];
+            const lastIdStar = star.id.match(/\d+/)[0];
 
-            let wordId = star.id.match(/[a-zA-Z]+/)[0];
+            const wordId = star.id.match(/[a-zA-Z]+/)[0];
 
             if (
                 currentColorRGB.r === 174 &&
@@ -186,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 currentColorRGB.b === 170
             ) {
                 for (let index = 1; index <= lastIdStar; index++) {
-                    let starDictionary = document.getElementById(
+                    const starDictionary = document.getElementById(
                         `${index}-${wordId}`
                     );
 
@@ -195,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             } else {
 
                 for (let index = 5; index > lastIdStar; index--) {
-                    let starDictionary = document.getElementById(
+                    const starDictionary = document.getElementById(
                         `${index}-${wordId}`
                     );
 
@@ -205,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
 
-    let ratings = [];
+    const ratings = [];
 
     for (let star of stars) {
 
@@ -213,11 +210,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             this.setAttribute("data-clicked", "true");
 
-            let rating = this.dataset.rating;
+            const rating = this.dataset.rating;
 
-            let heroId = this.parentElement.dataset.heroid;
+            const heroId = this.parentElement.dataset.heroid;
 
-            let data = {
+            const data = {
 
                 "rating": rating,
 

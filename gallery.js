@@ -183,24 +183,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 currentColorRGB.b === 170
             ) {
                 for (let index = 1; index <= lastIdStar; index++) {
-                    const starDictionary = document.getElementById(
-                        `${index}-${wordId}`
-                    );
-
-                    starDictionary.style.color = "#FA7720";
+                    changeColorStar(index, wordId, "#FA7720");
                 }
             } else {
 
                 for (let index = 5; index > lastIdStar; index--) {
-                    const starDictionary = document.getElementById(
-                        `${index}-${wordId}`
-                    );
-
-                    starDictionary.style.color = "#AEAAAA";
+                    changeColorStar(index, wordId, "#AEAAAA");
                 }
             }
         });
     });
+
+    function changeColorStar(index, wordId, starColor) {
+        const starDictionary = document.getElementById(
+            `${index}-${wordId}`
+        );
+
+        starDictionary.style.color = starColor;
+    }
 
     const ratings = [];
 
@@ -226,3 +226,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     }
 });
+
+
+
